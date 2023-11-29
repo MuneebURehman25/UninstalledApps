@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.recovery.recentlyuninstalledappsrecovery.presentation.fragments.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_systemAppsFragment"
+            app:destination="@id/systemAppsFragment"
+
+
+            />
+        <action
+            android:id="@+id/action_dashboardFragment_to_userAppsFragment"
+            app:destination="@id/userAppsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_uninstallAppsFragment"
+            app:destination="@id/uninstallAppsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/systemAppsFragment"
+        android:name="com.recovery.recentlyuninstalledappsrecovery.presentation.fragments.SystemAppsFragment"
+        android:label="fragment_system_apps"
+        tools:layout="@layout/fragment_system_apps">
+        <action
+            android:id="@+id/action_systemAppsFragment_to_appDetailsFragment"
+            app:destination="@id/appDetailsFragment" />
+        <argument
+            android:name="type"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/userAppsFragment"
+        android:name="com.recovery.recentlyuninstalledappsrecovery.presentation.fragments.UserAppsFragment"
+        android:label="fragment_user_apps"
+        tools:layout="@layout/fragment_user_apps" >
+        <action
+            android:id="@+id/action_userAppsFragment_to_appDetailsFragment"
+            app:destination="@id/appDetailsFragment" />
+
+        <argument
+            android:name="type"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/uninstallAppsFragment"
+        android:name="com.recovery.recentlyuninstalledappsrecovery.presentation.fragments.UninstallAppsFragment"
+        android:label="fragment_uninstall_apps"
+        tools:layout="@layout/fragment_uninstall_apps" />
+    <fragment
+        android:id="@+id/appDetailsFragment"
+        android:name="com.recovery.recentlyuninstalledappsrecovery.presentation.fragments.AppDetailsFragment"
+        android:label="fragment_app_details"
+        tools:layout="@layout/fragment_app_details">
+
+
+        <argument
+            android:name="AppInfoDetailsModel"
+            app:argType="com.recovery.recentlyuninstalledappsrecovery.domain.model.AppInfoDetailsModel"/>
+        <action
+            android:id="@+id/action_appDetailsFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+
+
+    </fragment>
+</navigation>

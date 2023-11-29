@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainFragmentRecentlyUninstallApps"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_main_bg"
+    tools:context=".presentation.fragments.UninstallAppsFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutUninstallAppsBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="10dp"
+            android:src="@drawable/ic_new_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/imgBack"
+            app:layout_constraintTop_toTopOf="@id/imgBack"
+            app:layout_constraintBottom_toBottomOf="@id/imgBack"
+            android:text="@string/back_to_home"
+            android:textAllCaps="false"
+            android:textColor="#A8343C45"
+            android:fontFamily="@font/roboto"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginStart="5dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutUninstalledAppsMain"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutUninstallAppsBack"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_uninstalled_bg"
+        >
+
+        <ImageView
+            android:id="@+id/imgUninstalledApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_uninstall_apps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.07"/>
+
+        <TextView
+            android:id="@+id/uninstallTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:includeFontPadding="false"
+            android:text="Uninstalled Apps"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/imgUninstalledApps"
+            app:layout_constraintTop_toBottomOf="@+id/imgUninstalledApps"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/uninstallTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/uninstallTxt"
+            app:layout_constraintHorizontal_bias="0.95"
+            >
+
+            <CheckBox
+                android:id="@+id/selectUnselect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:button="@drawable/check_box_layout"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/delete"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/selectUnselect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_delete_all"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_unInstallApps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/layout_uninstall_apps"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/layoutUninstalledAppsMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutPleaseWait"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#66000000"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:outlineAmbientShadowColor="@color/grey"
+            android:outlineSpotShadowColor="@color/grey"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textPleaseWait"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Please wait..."
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/inter"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

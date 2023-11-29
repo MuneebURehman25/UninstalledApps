@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Recently Uninstalled Apps Recovery</string>
+
+    <string name="system_apps">System apps</string>
+    <string name="user_apps">User apps</string>
+    <string name="recently_uninstall_apps">Uninstall apps</string>
+    <string name="app_deleted_successfully">App Removed from database</string>
+    <string name="no_apps_found">No Apps Found</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="privacy_policy">Privacy Policy</string>
+</resources>

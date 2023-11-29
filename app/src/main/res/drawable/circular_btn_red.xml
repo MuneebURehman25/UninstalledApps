@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <solid android:color="#FF565E" /> <!-- Background color of the circular button -->
+    <size
+        android:width="57dp"
+        android:height="57dp" />
+    <corners android:radius="12dp"/>
+</shape>
+
+<!--    #D7E6AC-->

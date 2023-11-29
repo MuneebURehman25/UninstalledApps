@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RecentlyUninstalledAppsRecovery" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+    <style name="circularShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
