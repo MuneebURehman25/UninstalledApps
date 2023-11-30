@@ -1,14 +1,13 @@
 package com.recovery.recentlyuninstalledappsrecovery.presentation.fragments
 
+import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,7 @@ import com.recovery.recentlyuninstalledappsrecovery.domain.model.PermissionItem
 import com.recovery.recentlyuninstalledappsrecovery.presentation.adapter.PermissionsAdapter
 import com.recovery.recentlyuninstalledappsrecovery.utils.Constants
 import com.recovery.recentlyuninstalledappsrecovery.utils.hide
+import com.recovery.recentlyuninstalledappsrecovery.utils.isPermissionGranted
 import com.recovery.recentlyuninstalledappsrecovery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,7 +41,7 @@ class AppDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentAppDetailsBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -84,18 +84,17 @@ class AppDetailsFragment : Fragment() {
             binding.scrollItems.hide()
 
             permissionItemList.clear()
-            activity?.let {
-                val permissions = Constants.getPermissionsForApp(it,appInfoDetails.packageName.toString())
+            activity?.let {activity->
 
+                val permissions = Constants.getPermissionsForApp(activity,appInfoDetails.packageName.toString())
                 permissions?.forEach {permission->
                     // Check if the permission is granted
-                    val isAllowed = ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED
-                    val cleanedPermission = removePermissionPrefix(permission)
-                    val permissionItem = PermissionItem(cleanedPermission, isAllowed)
+                    val isAllowed = activity.isPermissionGranted(permission)
+                    val permissionItem = PermissionItem(permission, isAllowed)
                     permissionItemList.add(permissionItem)
                 }
 
-                val adapter = PermissionsAdapter(permissionItemList,it)
+                val adapter = PermissionsAdapter(permissionItemList,activity)
                 binding.rvPermissions.adapter = adapter
             }
 
@@ -107,6 +106,8 @@ class AppDetailsFragment : Fragment() {
             binding.scrollItems.show()
             binding.btnBack.hide()
         }
+
+
 
 
 
@@ -145,15 +146,7 @@ class AppDetailsFragment : Fragment() {
         startActivity(intent)
     }
 
-    fun removePermissionPrefix(permission: String): String {
-        val prefix = "android.permission."
-        return if (permission.startsWith(prefix)) {
-            permission.substring(prefix.length)
-        } else {
-            // If the string doesn't start with the prefix, return the original string
-            permission
-        }
-    }
+
 
     private fun packageName(packageName: String) {
         try {

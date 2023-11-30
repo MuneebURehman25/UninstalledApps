@@ -99,3 +99,16 @@ fun getBitmapFromDrawable(drawable: Drawable): Bitmap? {
     return bitmap
 }
 
+fun Context.isPermissionGranted(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+}
+
+fun removePermissionPrefix(permission: String): String {
+    val prefix = "android.permission."
+    return if (permission.startsWith(prefix)) {
+        permission.substring(prefix.length)
+    } else {
+        // If the string doesn't start with the prefix, return the original string
+        permission
+    }
+}

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.recovery.recentlyuninstalledappsrecovery.R
 import com.recovery.recentlyuninstalledappsrecovery.databinding.LayoutPermissionsBinding
 import com.recovery.recentlyuninstalledappsrecovery.domain.model.PermissionItem
+import com.recovery.recentlyuninstalledappsrecovery.utils.removePermissionPrefix
 
 class PermissionsAdapter(private val permissionList: List<PermissionItem>, val context: Context) :
     RecyclerView.Adapter<PermissionsAdapter.PermissionViewHolder>() {
@@ -17,7 +18,8 @@ class PermissionsAdapter(private val permissionList: List<PermissionItem>, val c
 
         fun bind(permissionItem: PermissionItem) {
             binding.apply {
-                permissionTxt.text = permissionItem.permission
+                val cleanedPermission = removePermissionPrefix(permissionItem.permission)
+                permissionTxt.text = cleanedPermission
                 permissionStatus.text = if (permissionItem.isAllowed) "Allowed" else "Not Allowed"
                 if (permissionStatus.text.equals("Not Allowed")){
                     permissionStatus.setTextColor(ContextCompat.getColor(context, R.color.red))
