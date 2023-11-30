@@ -187,4 +187,6 @@ class AppDetailsFragment : Fragment() {
                 }
             }
         }
+
+
 }
